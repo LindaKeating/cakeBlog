@@ -1,15 +1,18 @@
 <?php
 class UsersController extends AppController {
+	
+	public $helpers = array('Html', 'Form', 'Session');
+	public $components = array('Session');
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('add', 'logout');
+        $this->Auth->allow('add', 'logout','login');
     }
     
 	public function login() {
     	if ($this->request->is('post')) {
         	if ($this->Auth->login()) {
-            	return $this->redirect($this->Auth->redirect());
+            	return $this->redirect($this->Auth->redirectUrl());
         	}
         $this->Session->setFlash(__('Invalid username or password, try again'));
     	}
@@ -20,6 +23,7 @@ class UsersController extends AppController {
 	}
 
     public function index() {
+    	debug($this->Auth->user());
         $this->User->recursive = 0;
         $this->set('users', $this->paginate());
     }
