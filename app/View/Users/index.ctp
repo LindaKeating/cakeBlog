@@ -1,4 +1,4 @@
-<h1>Blog posts</h1>
+<h1>Users Index</h1>
 <?php echo $this->Html->link(
     'Add User',
     array('controller' => 'users', 'action' => 'add')

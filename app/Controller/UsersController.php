@@ -3,11 +3,32 @@ class UsersController extends AppController {
 	
 	public $helpers = array('Html', 'Form', 'Session');
 	public $components = array('Session');
+	
+    public function isAuthorized($user){
+    	if(in_array($this->action, array('add'))){
+    		return true;
+    	}
+    	if(in_array($this->action, array('view', 'edit', 'delete'))){
+    		
+    		$userId = $this->request->params['pass'][0];
+    		if($this->Auth->user('id')=== $userId){
+    			debug($this->Auth->user('role'));
+    			return true;
+    		}
+    		else
+    		{
+    		$this->Session->setFlash(__('Sorry only Admin users may modify , view or delete other users'));	
+    		}
+    	}
+    	return parent::isAuthorized($user);
+    }
 
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('add', 'logout','login');
     }
+    
+
     
 	public function login() {
     	if ($this->request->is('post')) {
@@ -23,8 +44,8 @@ class UsersController extends AppController {
 	}
 
     public function index() {
-    	debug($this->Auth->user());
-        $this->User->recursive = 0;
+    	
+        $this->User->recursive = 1;
         $this->set('users', $this->paginate());
     }
 

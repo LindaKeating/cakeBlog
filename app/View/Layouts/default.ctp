@@ -30,6 +30,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('cake.generic');
+		echo $this->Html->css('bootstrap');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -39,22 +40,23 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
-				
-				<?php 
-					if(AuthComponent::user()){
-				
-						echo $this->Html->link('Logout',
-                 		array('controller'=>'users', 'action' => 'logout' ));
-                 
-					}
-                 ?>
+			<ul class="nav nav-pills">
+				<li><?php echo $this->Html->link('Home', array('controller' =>'users', 'action'=> 'index')); ?></li>
+				<li><?php echo $this->Html->link('Some String', array('controller' =>'users', 'action'=> 'index')); ?></li>
+				<li><?php echo $this->Html->link('Link 3', array('controller' =>'users', 'action'=> 'index')); ?></li>			
+			</ul>
 		</div>
 		<div id="content">
-			<?php echo $this->Html->link(
-    			'Logout',
-    			array('controller' => 'users', 'action' => 'logout')
-				); 
+		
+			
+			<?php if(AuthComponent::user()){
+				echo 'Welcome '.AuthComponent::user('username');
+				echo $this->Html->link('Logout', array('controller'=>'users', 'action'=>'logout'));
+			}
+			else{
+				echo $this->Html->link('Login',
+				array('controller'=>'users', 'action' => 'login'));
+			}
 			?>
 
 			<?php echo $this->Session->flash(); ?>
