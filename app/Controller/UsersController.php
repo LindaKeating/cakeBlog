@@ -30,7 +30,7 @@ class UsersController extends AppController {
     
 
     
-	public function login() {
+	public function login() {		
     	if ($this->request->is('post')) {
         	if ($this->Auth->login()) {
             	return $this->redirect($this->Auth->redirectUrl());
@@ -44,7 +44,7 @@ class UsersController extends AppController {
 	}
 
     public function index() {
-    	
+    	debug(AuthComponent::user());
         $this->User->recursive = 1;
         $this->set('users', $this->paginate());
     }

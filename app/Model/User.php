@@ -5,7 +5,8 @@ class User extends AppModel {
 	
 	public $hasMany = array(
 		'Post'=>array(
-			'className' => 'Post')
+		'className' => 'Post'
+		)
 	);
     
 	public $validate = array(

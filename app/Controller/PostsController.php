@@ -24,6 +24,7 @@ class PostsController extends AppController {
 	
 	// The index method allows us to view all the Posts
 	public function index() {
+		
 		$this->set('posts', $this->Post->find('all'));
 	}
 
