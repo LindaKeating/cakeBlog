@@ -61,14 +61,26 @@
  */
 class DATABASE_CONFIG {
 
+// 	public $default = array(
+// 		'datasource' => 'Database/Mysql',
+// 		'persistent' => false,
+//		'host' => 'localhost',
+// 		'login' => 'root',
+//		//'password' => 'cake',
+//		'database' => 'cake',
+//		'prefix' => '',
+//		//'encoding' => 'utf8',
+//	);
+
  	public $default = array(
  		'datasource' => 'Database/Mysql',
  		'persistent' => false,
-		'host' => 'localhost',
- 		'login' => 'root',
-		//'password' => 'cake',
-		'database' => 'cake',
+		'host' => 'eu-cdbr-azure-north-c.cloudapp.net',
+ 		'login' => 'b15a1fbdf388bc',
+		'password' => '9db8058d',
+		'database' => 'LKCakePAVAoBTQfF',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
+		
 }
